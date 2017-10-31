@@ -23,6 +23,20 @@ public class GraphMaker {
 		graphics.setColor(Color.BLACK);
 		graphics.drawLine(250, 0, 250, 500);
 		graphics.drawLine(0, 250, 500, 250);
+		for (int x = -5; x <= 5; x++) {
+			int xPos = (x + 5) * 50;
+			graphics.drawLine(xPos, 240, xPos, 260);
+			for (int inside = 0; inside < 5; inside++) {
+				graphics.drawLine(xPos + (inside * 10), 245, xPos + (inside * 10), 255);
+			}
+		}
+		for (int y = -5; y <= 5; y++) {
+			int yPos = (y + 5) * 50;
+			graphics.drawLine(240, yPos, 260, yPos);
+			for (int inside = 0; inside < 5; inside++) {
+				graphics.drawLine(245, yPos + (inside * 10), 255, yPos + (inside * 10));
+			}
+		}
 		for (String expression : expressions) {
 			Evaluator eval = new Evaluator(expression);
 			double lastOutput = Double.MIN_VALUE;
@@ -42,9 +56,9 @@ public class GraphMaker {
 			color++;
 		}
 		graphics.setColor(Color.BLACK);
-		graphics.drawString("0", 250, 250);
-		graphics.drawString(format.format(250 * scale), 500 - graphics.getFontMetrics().stringWidth(format.format(250 * scale)), 250);
-		graphics.drawString(format.format(250 * scale), 250, 10);
+		graphics.drawString("0", 255, 245);
+		graphics.drawString(format.format(250 * scale), 500 - graphics.getFontMetrics().stringWidth(format.format(250 * scale)), 245);
+		graphics.drawString(format.format(250 * scale), 255, 10);
 		graphics.dispose();
 		ImageIO.write(image, "png", new File("graph.png"));
 	}
